@@ -1,0 +1,67 @@
+<div class="container">
+    <header>
+        <img src="../../../assets/images/pokeball-02.png" alt="pokeball" class="pokeball">
+        <h1>Pokedex</h1>
+        <img src="../../../assets/images/pokeball-02.png" alt="pokeball" class="pokeball">
+    </header>
+
+    <div class="buscador">
+        <button (click)="prevPage()" id="anterior">Anterior</button>
+        <button (click)="nextPage()" id="siguiente" [disabled]="(pokemons | filtro: page : search).length === 0">Siguiente</button>
+
+        <input type="text" class="form-control" placeholder="Buscar" #Search (keyup)="onSearchPokemon(Search.value)">
+    </div>
+
+    <section class="pokemon-container">
+        <!-- <div class="poke-header">
+            <h3>Numero</h3>
+            <h3>Nombre</h3>
+            <h3>Sprite</h3>
+        </div> -->
+
+        <div class="poke-table">
+            <div *ngFor="let poke of pokemons | filtro: page : search" class="poke-card">
+                <div class="number">{{poke.id}}</div>
+                <div class="name">{{poke.name}}</div>
+                <img [src]="poke.image" [alt]="poke.name" class="sprite">
+            </div>
+
+            <div *ngIf="(pokemons | filtro: page : search).length === 0" class="poke-card">
+                <div class="not-found">Not Found</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Poketabla *****************************************************-->
+
+    <!-- <table>
+        <thead>
+            <tr>
+                <th>Numero</th>
+                <th>Nombre</th>
+                <th>Sprite</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let poke of pokemons | filtro: page : search">
+                <td>{{poke.id}}</td>
+                <td>{{poke.name}}</td>
+                <td>
+                    <img [src]="poke.image" [alt]="poke.name" class="sprite">
+                </td>
+            </tr>
+
+            <tr *ngIf="(pokemons | filtro: page : search).length === 0">
+                <td>Not Found</td>
+                <td>Not Found</td>
+                <td>
+                    <img src="" alt="Not Found">
+                </td>
+            </tr>
+        </tbody>
+    </table> -->
+
+    <footer>
+        &copy;Derechos Reservados Pokemon Company 2022
+    </footer>
+</div>
